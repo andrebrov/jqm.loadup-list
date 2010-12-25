@@ -1,0 +1,41 @@
+This id a first version of LoadUp List plugin for jQuery Mobile
+You can see demo here http://andrebrov.net/dev/loadup-list/
+
+For any question write to andrebrov@gmail.com
+
+How to use this widget.
+
+On your page create  list with defined ID
+
+<div data-role="content" >					
+	<ul data-role="listview" data-inset="true" data-theme="a" id="long-list" style="position:relative;top:0px;">					
+	</ul> 
+</div> 
+			
+Then create script block and define two functions: onloadmove and onloadfinish
+
+onloadmove works when you drag list up. For example:
+
+var onloadmove = function(){
+	$('#loader').remove();
+	$("#long-list").parent().append("<div id='loader' style=' margin-left: 45% ;  margin-right: 49% ;'><img src='images/loader.gif' alt='Loading...'/></div>");
+}
+
+This function insert animated gif, shows loading progress.
+
+onloadfinish works when you release list. In this block i recomed do all ajax request and data initializating
+
+var onloadfinish = function(){				
+	$("#long-list li:last-child").removeClass("ui-corner-bottom");
+	$("#long-list li:last-child").attr("tabindex","-1");					
+	$("#long-list").append('<li role="option" tabindex="0" class="ui-li ui-li-static ui-btn-up-a ui-corner-bottom">2</li>');			
+	$("#long-list").animate({ top: 0}, "fast");
+	$('#loader').remove();
+}
+
+And then add next line
+
+$("#long-list").loadup(onloadmove,onloadfinish);
+
+Profit!
+

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <style type="text/css" media="screen">@import "css/jquery.mobile-1.0a2.css";</style>        
+        <link rel="stylesheet" href="css/loadup_list.css" type="text/css"/>
+		<script src="http://code.jquery.com/jquery-1.4.4.min.js"></script>				
+        <script src="js/jquery.mobile-1.0a2.js" type="application/x-javascript" charset="utf-8"></script>						
+		<script src="js/jquery.loadup-list.js" type="application/x-javascript" charset="utf-8"></script>        
+        <title>jQuery Mobile LoadUp List Widget Demo</title>		
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+		<script type="text/javascript">
+		$(function(){
+			var onloadmove = function(){
+				$('#loader').remove();
+				$("#long-list").parent().append("<div id='loader' style=' margin-left: 45% ;  margin-right: 49% ;'><img src='images/loader.gif' alt='Loading...'/></div>");
+			}
+			var onloadfinish = function(){				
+				$("#long-list li:last-child").removeClass("ui-corner-bottom");
+				$("#long-list li:last-child").attr("tabindex","-1");					
+				$("#long-list").append('<li role="option" tabindex="0" class="ui-li ui-li-static ui-btn-up-a ui-corner-bottom">2</li>');							
+				$('#loader').remove();
+			}
+			$("#long-list").loadup(onloadmove,onloadfinish);	
+		});
+		</script>
+    </head>    
+		<body>		
+		<div data-role="page" id="main_page" data-theme="b"> 
+			<div data-role="header" > 
+				<h1>Home page</h1>				
+			</div> 
+			<div data-role="content" >					
+				<ul data-role="listview" data-inset="true" data-theme="a" id="long-list" style="position:relative;top:0px;">
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+				</ul> 
+			</div> 
+			<div data-role="footer"> 
+				Developed by Rebrov Andrey, Samara 2010
+			</div> 
+		</div>					
+	</body>     
+</html>
